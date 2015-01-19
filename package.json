@@ -1,0 +1,22 @@
+{
+  "name": "Waitly",
+  "version": "1.0.0",
+  "description": "Waitlist for Restaurants",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/chikeichan/2014-12-solo"
+  },
+  "author": "Jacky Chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chikeichan/2014-12-solo/issues"
+  },
+  "homepage": "https://github.com/chikeichan/2014-12-solo",
+  "dependencies": {
+    "express": "^4.11.0"
+  }
+}
