@@ -16,29 +16,26 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Waitly ##
+  > No more wasted time on waiting for your favorite restaurant
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Put yourself on the waitlist of your favorite restaurant on the fly, and receive a notification when it is almost your turn. Or, if you prefer not to wait, find out which table can serve you immediately.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > The average foodies spends about 1.5 hours wait for a table. This leads to bad mood for the customers and higher likelihood of a bad Yelp review!
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Allow user to put themselve on the waitlist on the fly, and receive a notification when the table is almost ready. Less waiting time means happiers customer for the restaurant (and higher Yelp review!).
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Don't be sorry anymore for making your customer wait"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Restaurant owner simply need to create a profile. Consumers will then be able to find you on our database and put themselve on your waitlist. 
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Instead of waiting for my table outside of my favorite restaurant on a cold winter night, I was shopping at the mall and received a notification 5 minutes before my table was ready." 
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Check us out here!
