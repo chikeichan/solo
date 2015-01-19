@@ -1,0 +1,56 @@
+body {
+	font-family: Oxygen;
+	margin: 0;
+}
+
+h1 {
+	font-family: Rochester;
+	color: white;
+	font-size: 80px;
+	padding: 0 0 5px 20px;
+	display: inline-block;
+
+}
+
+header-bar > div {
+	background-color: #00D8FF;
+	margin: -50px 0 0 0;
+	box-shadow: 0px 0px 1px black;
+	height: 160px;
+}
+
+div.header {
+	width: 70%;
+	margin: 0 auto 0 auto;
+
+}
+
+input#search {
+	display: inline-block;
+	width: 50%;
+	border: 0;
+	border-radius: 5px;
+	height: 22px;
+	position: relative;
+	top: -12px;
+	margin-left: 60px;
+	padding: 5px;
+}
+input#search:focus {
+	outline: none;
+}
+
+.waitlist {
+	width: 50%;
+	float: right;
+}
+
+#party {
+	height: 40px;
+	width: 60%;
+	border-radius: 10px;
+	background-color: rgb(242,242,242);
+	margin: 5px;
+	padding: 20px;
+	border: 1px solid rgb(223,223,223);;
+}
