@@ -1,0 +1,33 @@
+{
+  "name": "Waitly",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chikeichan/2014-12-solo",
+  "authors": [
+    "Jacky Chan"
+  ],
+  "description": "Waitlist for Restaurants",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "waitlist",
+    "restaurant",
+    "eat",
+    "restaurants",
+    "food"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "underscore": "~1.7.0",
+    "angular": "~1.3.9"
+  }
+}
