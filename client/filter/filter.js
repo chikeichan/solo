@@ -1,17 +1,25 @@
 angular.module('waitly.filter',[])
 
-.controller('FilterController', function($scope,Restaurant){
+.controller('FilterController', function($scope,$location,Restaurant){
 	angular.extend($scope,Restaurant);
-	console.log($scope.data);
+	$scope.goFilter = function(id){
+		$location.path(id);
+	};
 })
 
 .directive('filterBar', function(){
 	return {
 		retrict: 'EA',
-		scope: false,
+		scope: '=',
 		templateUrl: './filter/filter.html',
-		link: function(scope,el){
-
+		link: function(scope,el,attr){
+			$(el)
+			.on('mouseenter','#restaurants',function(){
+				$(this).addClass('click');
+			})
+			.on('mouseleave','#restaurants',function(){
+				$(this).removeClass('click');
+			})
 		}
 	}
 })

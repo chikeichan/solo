@@ -92,6 +92,10 @@ input#search:focus {
 	background-color: rgb(255,249,155);
 }
 
+#restaurants.click {
+	background-color: rgb(170, 170, 170);
+}
+
 .filter {
 	display: inline-block;
 	text-align: left;

@@ -10,7 +10,7 @@ angular.module('waitly.header',[])
 		scope: false,
 		templateUrl: './header/header.html',
 		link: function(){
-
+			
 		}
 	}
 })
