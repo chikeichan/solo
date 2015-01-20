@@ -135,7 +135,6 @@ angular.module('waitly',[
 
 .run(function($rootScope, $location, $window,Auth) {
 
-
 	$rootScope.$on('$routeChangeStart',function(evt,next,current){
 		if(next.authenticate && next.owner){
 			if(!$window.localStorage['com.waitly.owner']){

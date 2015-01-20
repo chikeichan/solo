@@ -6,37 +6,11 @@ var User = require('./db.js').User;
 var Waitlist = require('./db.js').Waitlist;
 var Restaurant = require('./db.js').Restaurant;
 
-
-waitlistdb = [
-		{
-			waitlistID: 1,
-			restaurantName: 'Spruce Cafe',
-			name: 'Tony',
-			size: 2,
-			time: new Date()
-		},
-		{
-			waitlistID: 2,
-			restaurantName: 'Cafe Des Amis',
-			name: 'Marcus',
-			size: 5,
-			time: new Date()
-		},
-		{
-			waitlistID: 3,
-			restaurantName: 'Anchor Oyster Bar',
-			name: 'Fred',
-			size: 4,
-			time: new Date()
-		},
-		{
-			waitlistID: 4,
-			restaurantName: 'Gary Danko',
-			name: 'Shawn',
-			size: 7,
-			time: new Date()
-		},
-	];
+	// 	restaurant: String,
+	// User: String,
+	// partySize: Number,
+	// time: {type: Date, default: Date.now},
+	// status: String
 
 module.exports = function(app) {
 	app.use(express.static(__dirname+'/../client/'));
@@ -47,16 +21,22 @@ module.exports = function(app) {
 	})
 
 	app.get('/api/waitlists',function(req,res,next){
-		res.send(waitlistdb);
-		res.header(200);
+		Waitlist.find({},function(err,d){
+			res.send(d);
+		})
+	})
+
+	app.put('/api/waitlists/:id',function(req,res,next){
+		Waitlist.findOne({_id: req.params.id},function(err,d){
+			d.status = req.body.status;
+			d.save();
+			res.send('/');
+		})
 	})
 
 	app.post('/api/waitlists',function(req,res, next){
-		var waitlist = req.body;
-		waitlist.waitlistID = waitlistdb.length;
-		var error = false;
-		waitlistdb.push(waitlist);
-		res.header(300);
+		var newWaitlist = new Waitlist(req.body);
+		newWaitlist.save();
 		res.send();
 	});
 

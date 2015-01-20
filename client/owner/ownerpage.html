@@ -5,10 +5,10 @@
 			<span id='average-wait'>{{restaurant.averageWaitTime + ' minutes'}}</span>
 			<a href='#/refresh'>refresh</a>
 	</div>
-	<div id='party' ng-repeat="party in parties | filter: filter" ng-click='startTimer(this)'>
-		<span id='name'>{{party.name}}</span> for 
-		<span id='size'>{{party.size}}</span> people <br>
+	<div id='party' ng-repeat="party in parties | filter:{restaurant:filter,status:'!Seated'} | orderBy: 'status'" ng-click='startTimer(this)'>
+		<span id='name'>{{party.user}}</span> for 
+		<span id='size'>{{party.partySize}}</span> people <br>
 		<span id='time'>{{party.time}}</span>
-		<span id='timer'>{{party.timer}}</span>
+		<span id='timer'>{{party.status}}</span>
 	</div>
 </div>

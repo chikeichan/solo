@@ -5,9 +5,9 @@
 		<input ng-model='partySize' type='number' placeholder='3'></input><br>
 		<button ng-click='createParty(partyName,partySize); partyName = ""; partySize = ""'>Waitlist</button>
 	</div>
-	<div id='party' ng-repeat="party in parties | filter: filterName">
-		<span id='name'>{{party.name}}</span> for 
-		<span id='size'>{{party.size}}</span> people <br>
+	<div id='party' ng-repeat="party in parties | filter:{restaurant:filterName,status:'!Seated'}">
+		<span id='name'>{{party.user}}</span> for 
+		<span id='size'>{{party.partySize}}</span> people <br>
 		<span id='time'>{{party.time}}</span>
 	</div>
 </div>

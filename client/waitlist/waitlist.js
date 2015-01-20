@@ -5,7 +5,7 @@ angular.module('waitly.waitlist',[])
 
 	if($routeParams.id){
 		Restaurant.data.forEach(function(d){
-			if(d.id == $routeParams.id){
+			if(d._id == $routeParams.id){
 				$scope.filterName = d.name;
 			}
 		})
@@ -20,10 +20,11 @@ angular.module('waitly.waitlist',[])
 		}
 
 		var waitlist = {
-			restaurantName: $scope.filterName,
-			name: name,
-			size: size,
-			time: new Date()
+			restaurant: $scope.filterName,
+			user: name,
+			partySize: size,
+			time: new Date(),
+			status: 'waiting'
 		}
 
 		$http({

@@ -35,19 +35,31 @@ angular.module('waitly.owner',[])
 	}
 
 	$scope.startTimer = function(check){
-		if(check.party.timer === 'Sent Notification'){
-			$scope.parties.forEach(function(party,i){
-				if(check.party.waitlistID === party.waitlistID){
-					$scope.parties.splice(i,1);
-				}
-			})
+		var id = check.party._id;
+		var newStatus;
+
+		if(check.party.status === 'waiting'){
+			newStatus = '15 minutes';
 		}
-		$scope.parties.forEach(function(party){
-			if(check.party.waitlistID === party.waitlistID){
-				party.timer = 'Sent Notification';
-			}
+
+		if(check.party.status === '15 minutes'){
+			newStatus = '5 minutes';
+		}
+
+		if(check.party.status === '5 minutes'){
+			newStatus = '1 minutes';
+		}
+
+		if(check.party.status === '1 minutes'){
+			newStatus = 'Seated';
+		}
+
+		$http.put('/api/waitlists/'+id,{
+			_id: id,
+			status: newStatus
+		}).success(function(){
+			$location.path('/refresh')
 		})
-		
 	}
 
 

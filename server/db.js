@@ -13,10 +13,10 @@ UserSchema = new Schema({
 
 WaitlistSchema = new Schema({
 	restaurant: String,
-	User: String,
+	user: String,
 	partySize: Number,
 	time: {type: Date, default: Date.now},
-	status: String
+	status: {type: String, default: 'waiting'}
 });
 
 RestaurantSchema = new Schema({
