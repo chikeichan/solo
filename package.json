@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/chikeichan/2014-12-solo",
   "dependencies": {
-    "bcrypt": "^0.8.1",
+    "bcrypt-nodejs": "*",
     "body-parser": "^1.10.1",
     "express": "^4.11.0",
     "jwt-simple": "^0.2.0",

@@ -1,5 +1,5 @@
 var express = require('express');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./db.js').User;
