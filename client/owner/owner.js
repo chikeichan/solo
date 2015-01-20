@@ -1,7 +1,11 @@
 angular.module('waitly.owner',[])
 
-.controller('OwnerController', function($scope, $window, $location, Auth){
-	angular.extend($scope,Auth);
+.controller('OwnerController', function($scope, $window, $location, $http, Auth, Restaurant, Waitlist){
+	angular.extend($scope, Auth, Restaurant, Waitlist);
+
+	$scope.getData();
+	$scope.getParties();
+	$scope.filter = $window.localStorage['com.waitly.ownername'];
 
 	$scope.create = function(name, pw, owner, type){
 		if(!owner){
@@ -21,6 +25,7 @@ angular.module('waitly.owner',[])
 				averageWaitTime: 30
 			}).then(function(token){
 					$window.localStorage.setItem('com.waitly.owner',token);
+					$window.localStorage.setItem('com.waitly.ownername',name);
 					$location.path('/ownerpage');
 				})
 				.catch(function(error){
@@ -31,13 +36,25 @@ angular.module('waitly.owner',[])
 	}
 
 
+
 })
 
 .directive('ownerSignup', function(){
 	return {
 		retrict: 'EA',
-		scope: false,
+		scope: '=',
 		templateUrl: './owner/owner.html',
+		link: function(){
+			
+		}
+	}
+})
+
+.directive('ownerPage', function(){
+	return {
+		retrict: 'EA',
+		scope: "=",
+		templateUrl: './owner/ownerpage.html',
 		link: function(){
 			
 		}

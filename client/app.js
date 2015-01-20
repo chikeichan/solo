@@ -26,6 +26,13 @@ angular.module('waitly',[
 		template: "<owner-signup></owner-signup>",
 		controller: "OwnerController"
 	})
+	.when('/ownerpage', {
+		template: "<owner-page></owner-page>",
+		controller: "OwnerController"
+	})
+	.when('/refresh', {
+		redirectTo: "/ownerpage"
+	})
 	.when('/:id', {
 		template: "<wait-list></wait-list><filter-bar></filter-bar>",
 		controller: "WaitlistController",
@@ -46,6 +53,7 @@ angular.module('waitly',[
 	waitlist.getParties = function(){
 	$http.get('/api/waitlists')
 		.success(function(data){
+			console.log(data);
 			waitlist.parties = data;
 		})
 	}
@@ -62,6 +70,7 @@ angular.module('waitly',[
 	restaurant.getData = function(){
 		$http.get('/api/restaurants')
 			.success(function(data){
+				console.log(data);
 				restaurant.data = data;
 			})
 	};

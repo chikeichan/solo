@@ -1,6 +1,6 @@
 angular.module('waitly.signin',[])
 
-.controller('SigninController', function($scope,$window, $location,Auth){
+.controller('SigninController', function($scope,$window, $location, Auth){
 	$scope.user = {};
 
 	$scope.login = function(name, pw, owner){
@@ -20,7 +20,8 @@ angular.module('waitly.signin',[])
 			Auth.ownerSignin({name: name, password: pw})
 				.then(function(token){
 					$window.localStorage.setItem('com.waitly.owner',token);
-					$location.path('/ownerpage');
+					$window.localStorage.setItem('com.waitly.ownername',name);
+					$location.path('/ownerpage/');
 				})
 				.catch(function(error){
 					$scope.loginName = '';

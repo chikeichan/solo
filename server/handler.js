@@ -69,20 +69,22 @@ var restaurantdb = [{
 
 module.exports = function(app) {
 	app.use(express.static(__dirname+'/../client/'));
-
 	app.get('/api/restaurants',function(req,res,next){
 		res.send(restaurantdb);
+		res.header(200);
 	})
 
 	app.get('/api/waitlists',function(req,res,next){
 		res.send(waitlistdb);
+		res.header(200);
 	})
 
 	app.post('/api/waitlists',function(req,res, next){
 		var waitlist = req.body;
 		var error = false;
 		waitlistdb.push(waitlist);
-		res.send()
+		res.header(300);
+		res.send();
 	});
 
 	app.post('/api/users/signup',function(req,res, next){
@@ -91,15 +93,16 @@ module.exports = function(app) {
 		userdb.forEach(function(extuser){
 			if(extuser.username === user.username){
 				next(new Error('User Already Exist!'));
-				res.send('/');
+				res.header(500);
 				error = true;
+				res.send('/');
 			}
 		})
 		if(!error){
 			userdb.push(user)
 			var token = jwt.encode(user,'secret');
 			res.json({token: token});
-			res.send();
+			res.send(300);
 		}
 	});
 
@@ -122,13 +125,14 @@ module.exports = function(app) {
 
 		if(error){
 			res.error();
-			res.send();
+			res.send(500);
 		}
 
 	})
 
 	app.post('/api/restaurants/signup',function(req,res, next){
 		var restaurant = req.body;
+		restaurant.id = restaurantdb.length;
 		var error = false;
 		restaurantdb.forEach(function(extrestaurant){
 			if(extrestaurant.name === restaurant.name){

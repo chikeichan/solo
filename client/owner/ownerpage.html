@@ -1,0 +1,13 @@
+<div class='filter' ng-controller='OwnerController'>
+	<div id='restaurants' ng-repeat="restaurant in data | filter: filter">
+			<span id='name'><b>{{restaurant.name}}</b></span> <br>
+			<span id='type'>{{restaurant.type}}</span> <br>
+			<span id='average-wait'>{{restaurant.averageWaitTime + ' minutes'}}</span>
+			<a href='#/refresh'>refresh</a>
+	</div>
+	<div id='party' ng-repeat="party in parties | filter: filter">
+		<span id='name'>{{party.name}}</span> for 
+		<span id='size'>{{party.size}}</span> people <br>
+		<span id='time'>{{party.time}}</span>
+	</div>
+</div>
