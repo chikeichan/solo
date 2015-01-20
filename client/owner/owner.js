@@ -1,6 +1,6 @@
-angular.module('waitly.signup',[])
+angular.module('waitly.owner',[])
 
-.controller('SignupController', function($scope, $window, $location, Auth){
+.controller('OwnerController', function($scope, $window, $location, Auth){
 	angular.extend($scope,Auth);
 
 	$scope.create = function(name, pw, owner, type){
@@ -17,11 +17,11 @@ angular.module('waitly.signup',[])
 			Auth.ownerSignup({
 				name: name,
 				type: type,
-				password: pw,
+				pw: pw,
 				averageWaitTime: 30
 			}).then(function(token){
-					$window.localStorage.setItem('com.waitly',token);
-					$location.path('/owner');
+					$window.localStorage.setItem('com.waitly.owner',token);
+					$location.path('/ownerpage');
 				})
 				.catch(function(error){
 					console.log(error);
@@ -33,11 +33,11 @@ angular.module('waitly.signup',[])
 
 })
 
-.directive('signUp', function(){
+.directive('ownerSignup', function(){
 	return {
 		retrict: 'EA',
 		scope: false,
-		templateUrl: './signup/signup.html',
+		templateUrl: './owner/owner.html',
 		link: function(){
 			
 		}

@@ -18,11 +18,18 @@ angular.module('waitly.waitlist',[])
 		if(!name || !size){
 			return;
 		}
-		$scope.parties.push({
+
+		var waitlist = {
 			restaurantName: $scope.filterName,
 			name: name,
 			size: size,
 			time: new Date()
+		}
+
+		$http({
+			method: 'POST',
+			url: '/api/waitlists',
+			data: waitlist
 		})
 	};
 })

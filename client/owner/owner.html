@@ -2,7 +2,7 @@
 	<h3>Sign-up</h3>
 	<input ng-model='createName' placeholder='username' required></input><br>
 	<input ng-model='createPassword' placeholder='password' required></input><br>
-	<button ng-click='create(createName, createPassword)'>Submit</button></br>
+	<input ng-model='createType' placeholder='type: eg. Fine Dining, Casual...' required></input><br>
+	<button ng-click='create(createName, createPassword,true, createType)'>Submit</button></br>
 	<a href='#/signin'>Sign-in</a>
-	<a href='#/owner'>I am an Owner</a>
 </form>

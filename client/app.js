@@ -4,6 +4,7 @@ angular.module('waitly',[
 	'waitly.filter',
 	'waitly.signin',
 	'waitly.signup',
+	'waitly.owner',
 	'ngRoute'
 ])
 .config(function($routeProvider,$httpProvider){
@@ -20,6 +21,10 @@ angular.module('waitly',[
 	.when('/signin', {
 		template: "<sign-in></sign-in>",
 		controller: "SigninController"
+	})
+	.when('/owner', {
+		template: "<owner-signup></owner-signup>",
+		controller: "OwnerController"
 	})
 	.when('/:id', {
 		template: "<wait-list></wait-list><filter-bar></filter-bar>",
@@ -89,13 +94,39 @@ angular.module('waitly',[
 		})
 	}
 
+	var ownerSignin = function (restaurant) {
+		return $http({
+			method: 'POST',
+			url: '/api/restaurants/signin',
+			data: restaurant
+		})
+		.then(function(resp){
+			return resp.data.token;
+		})
+	}
+
+	var ownerSignup = function (restaurant) {
+		return $http({
+			method: 'POST',
+			url: '/api/restaurants/signup',
+			data: restaurant
+		})
+		.then(function(resp){
+			return resp.data.token;
+		})
+	}
+
 	return {
 		signup: signup,
-		signin: signin
+		signin: signin,
+		ownerSignup: ownerSignup,
+		ownerSignin: ownerSignin
 	}
 })
 
 .run(function($rootScope, $location, $window,Auth) {
+
+
 	$rootScope.$on('$routeChangeStart',function(evt,next,current){
 		if(next.authenticate){
 			if($window.localStorage['com.waitly']==='undefined'){

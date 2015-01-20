@@ -17,7 +17,17 @@ angular.module('waitly.signin',[])
 					$location.path('/signin');
 				})
 		} else {
-			
+			Auth.ownerSignin({name: name, password: pw})
+				.then(function(token){
+					$window.localStorage.setItem('com.waitly.owner',token);
+					$location.path('/ownerpage');
+				})
+				.catch(function(error){
+					$scope.loginName = '';
+					$scope.loginPassword = '';
+					$window.localStorage.setItem('com.waitly.owner',undefined);
+					$location.path('/signin');
+				})
 		}
 	}
 
