@@ -2,13 +2,23 @@ angular.module('waitly',[
 	'waitly.header',
 	'waitly.waitlist',
 	'waitly.filter',
+	'waitly.signin',
+	'waitly.signup',
 	'ngRoute'
 ])
 .config(function($routeProvider){
 	$routeProvider
+	.when('/signup',{
+		template: "<sign-up></sign-up>",
+		controller: "SignupController"
+	})
 	.when('/:id', {
-		template: "<wait-list></wait-list>",
+		template: "<wait-list></wait-list><filter-bar></filter-bar>",
 		controller: "WaitlistController"
+	})
+	.otherwise({
+		template: '<sign-in></sign-in>',
+		controller: "SigninController"
 	})
 })
 
@@ -75,4 +85,21 @@ angular.module('waitly',[
 		},
 	];
 	return restaurant;
+})
+
+.factory('Auth',function($http, $location, $window){
+	var signup = function (user) {
+		return $http({
+			method: 'POST',
+			url: '/api/users/signup',
+			data: user
+		})
+		.then(function(resp){
+			return resp.data.token;
+		})
+	}
+
+	return {
+		signup: signup
+	}
 })

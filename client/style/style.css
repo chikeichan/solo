@@ -118,3 +118,15 @@ span#average-wait {
   position: relative;
   top: -40px;
 }
+
+.signin, .signup {
+	line-height: 2;
+}
+
+.signin>input, .signup>input {
+	height: 20px;
+}
+
+.signin>a {
+	font-size: 12px;
+}
