@@ -1,6 +1,6 @@
 angular.module('waitly.waitlist',[])
 
-.controller('WaitlistController', function($scope, $routeParams, Waitlist, Restaurant){
+.controller('WaitlistController', function($scope, $routeParams, $http, Waitlist, Restaurant){
 	angular.extend($scope,Waitlist);
 
 	if($routeParams.id){
@@ -12,7 +12,7 @@ angular.module('waitly.waitlist',[])
 	} else {
 		$scope.filterName = '';
 	}
-
+	$scope.getParties();
 
 	$scope.createParty = function(name,size){
 		if(!name || !size){

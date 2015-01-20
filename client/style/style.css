@@ -127,6 +127,12 @@ span#average-wait {
 	height: 20px;
 }
 
-.signin>a {
+.signin>a, .signup>a {
 	font-size: 12px;
+}
+
+#owner {
+	width: 20px;
+	position: relative;
+	top: 4px;
 }

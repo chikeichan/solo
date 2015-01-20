@@ -32,68 +32,37 @@ angular.module('waitly',[
 	})
 })
 
-.factory('Waitlist',function(){
+.factory('Waitlist',function($http){
 	var waitlist = {};
 
 	waitlist.filterName = '';
 
-	waitlist.parties = [
-		{
-			restaurantName: 'Spruce Cafe',
-			name: 'Tony',
-			size: 2,
-			time: new Date()
-		},
-		{
-			restaurantName: 'Cafe Des Amis',
-			name: 'Marcus',
-			size: 5,
-			time: new Date()
-		},
-		{
-			restaurantName: 'Anchor Oyster Bar',
-			name: 'Fred',
-			size: 4,
-			time: new Date()
-		},
-		{
-			restaurantName: 'Gary Danko',
-			name: 'Shawn',
-			size: 7,
-			time: new Date()
-		},
-	];
+	waitlist.parties = [];
+	waitlist.getParties = function(){
+	$http.get('/api/waitlists')
+		.success(function(data){
+			waitlist.parties = data;
+		})
+	}
+	waitlist.getParties();
+	
 	return waitlist;
 })
 
-.factory('Restaurant',function(){
+.factory('Restaurant',function($http){
 	var restaurant = {};
-	restaurant.data = [
-		{
-			id: 1,
-			name: 'Spruce Cafe',
-			type: 'Fine Dining',
-			averageWaitTime: 90
-		},
-		{
-			id:2,
-			name: 'Cafe Des Amis',
-			type: 'Casual Dining',
-			averageWaitTime: 15
-		},
-		{
-			id:3,
-			name: 'Anchor Oyster Bar',
-			type: 'Casual Dining',
-			averageWaitTime: 75
-		},
-		{
-			id:4,
-			name: 'Gary Danko',
-			type: 'Fine Dining',
-			averageWaitTime: 120
-		},
-	];
+
+	restaurant.data = [];
+
+	restaurant.getData = function(){
+		$http.get('/api/restaurants')
+			.success(function(data){
+				restaurant.data = data;
+			})
+	};
+
+	restaurant.getData();
+
 	return restaurant;
 })
 

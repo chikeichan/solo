@@ -1,10 +1,13 @@
 angular.module('waitly.filter',[])
 
-.controller('FilterController', function($scope,$location,Restaurant){
+.controller('FilterController', function($scope,$location,$http,Restaurant){
 	angular.extend($scope,Restaurant);
 	$scope.goFilter = function(id){
 		$location.path(id);
 	};
+
+	$scope.getData();
+
 })
 
 .directive('filterBar', function(){

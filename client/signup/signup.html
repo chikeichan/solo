@@ -1,6 +1,8 @@
 <form class='signup'>
 	<h3>Sign-up</h3>
+	Restaurant Owner? : <input id='owner' type='checkbox' ng-model='owner'></input> <br>
 	<input ng-model='createName' placeholder='username' required></input><br>
 	<input ng-model='createPassword' placeholder='password' required></input><br>
-	<button ng-click='create(createName, createPassword)'>Submit</button>
+	<button ng-click='create(createName, createPassword,owner)'>Submit</button></br>
+	<a href='#/signin'>Sign-in</a>
 </form>
