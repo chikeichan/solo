@@ -2,11 +2,10 @@ var express = require('express');
 var bcrypt = require('bcrypt');
 var Q = require('q');
 var jwt = require('jwt-simple');
+var User = require('./db.js').User;
+var Waitlist = require('./db.js').Waitlist;
+var Restaurant = require('./db.js').Restaurant;
 
-var userdb = [{
-	username: 'Jacky',
-	password: '1234'
-}];
 
 waitlistdb = [
 		{
@@ -93,22 +92,28 @@ module.exports = function(app) {
 	});
 
 	app.post('/api/users/signup',function(req,res, next){
-		var user = req.body;
-		var error = false;
-		userdb.forEach(function(extuser){
-			if(extuser.username === user.username){
-				next(new Error('User Already Exist!'));
-				res.header(500);
-				error = true;
-				res.send('/');
-			}
+		var newUser = new User(req.body);
+		console.log(newUser);
+		User.findOne(req.body,function(err,user){
+			console.log(err,user);
 		})
-		if(!error){
-			userdb.push(user)
-			var token = jwt.encode(user,'secret');
-			res.json({token: token});
-			res.send(300);
-		}
+
+
+
+		// userdb.forEach(function(extuser){
+		// 	if(extuser.username === user.username){
+		// 		next(new Error('User Already Exist!'));
+		// 		res.header(500);
+		// 		error = true;
+		// 		res.send('/');
+		// 	}
+		// })
+		// if(!error){
+		// 	userdb.push(user)
+		// 	var token = jwt.encode(user,'secret');
+		// 	res.json({token: token});
+		// 	res.send(300);
+		// }
 	});
 
 

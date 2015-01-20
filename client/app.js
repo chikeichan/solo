@@ -28,7 +28,9 @@ angular.module('waitly',[
 	})
 	.when('/ownerpage', {
 		template: "<owner-page></owner-page>",
-		controller: "OwnerController"
+		controller: "OwnerController",
+		authenticate: true,
+		owner: true
 	})
 	.when('/refresh', {
 		redirectTo: "/ownerpage"
@@ -135,8 +137,13 @@ angular.module('waitly',[
 
 
 	$rootScope.$on('$routeChangeStart',function(evt,next,current){
+		if(next.authenticate && next.owner){
+			if($window.localStorage['com.waitly.owner']==='undefined' || !$window.localStorage['com.waitly.owner']){
+				return $location.path('/signin');
+			}
+		}
 		if(next.authenticate){
-			if($window.localStorage['com.waitly']==='undefined'){
+			if($window.localStorage['com.waitly']==='undefined' || !$window.localStorage['com.waitly']){
 				return $location.path('/signin');
 			}
 		}

@@ -131,6 +131,8 @@ span#average-wait {
 
 .signin>a, .signup>a {
 	font-size: 12px;
+	text-decoration: none;
+	color: rgb(255,0,97);
 }
 
 #owner {
