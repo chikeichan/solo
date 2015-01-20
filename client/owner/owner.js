@@ -30,7 +30,6 @@ angular.module('waitly.owner',[])
 				.catch(function(error){
 					console.log(error);
 				})
-
 		}
 	}
 
@@ -39,7 +38,7 @@ angular.module('waitly.owner',[])
 		var newStatus;
 
 		if(check.party.status === 'waiting'){
-			newStatus = '15 minutes';
+			newStatus = '9 minutes';
 		}
 
 		if(check.party.status === '15 minutes'){
@@ -72,7 +71,7 @@ angular.module('waitly.owner',[])
 		scope: '=',
 		templateUrl: './owner/owner.html',
 		link: function(){
-			
+
 		}
 	}
 })

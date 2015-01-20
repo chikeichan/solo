@@ -4,7 +4,7 @@ angular.module('waitly.signin',[])
 	$scope.user = {};
 
 	$scope.login = function(name, pw, owner){
-		if(!owner){	
+		if(!owner){
 			Auth.signin({username: name, password: pw})
 				.then(function(token){
 					$window.localStorage.setItem('com.waitly',token);
@@ -42,7 +42,7 @@ angular.module('waitly.signin',[])
 		scope: false,
 		templateUrl: './signin/signin.html',
 		link: function(){
-			
+
 		}
 	}
 })

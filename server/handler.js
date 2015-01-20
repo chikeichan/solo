@@ -30,7 +30,7 @@ module.exports = function(app) {
 		Waitlist.findOne({_id: req.params.id},function(err,d){
 			d.status = req.body.status;
 			d.save();
-			res.send('/');
+			res.send();
 		})
 	})
 
@@ -57,7 +57,7 @@ module.exports = function(app) {
 							});
 
 							newUser.save();
-							res.send('/');
+							res.send();
 						})
 					})
 				} else {
@@ -81,10 +81,11 @@ module.exports = function(app) {
 				} else {
 					bcrypt.compare(password,user.password, function(err,match){
 						if(!match){
-							res.send('/');
+							res.send();
 						} else {
 							var token = jwt.encode(req.body,'secret');
 							res.json({token: token});
+							res.send();
 						}
 					})
 				}
@@ -112,7 +113,7 @@ module.exports = function(app) {
 							});
 
 							newRest.save();
-							res.send('/');
+							res.send();
 						})
 					})
 				} else {
@@ -135,10 +136,11 @@ module.exports = function(app) {
 				} else {
 					bcrypt.compare(password,restaurant.password, function(err,match){
 						if(!match){
-							res.send('/');
+							res.send();
 						} else {
 							var token = jwt.encode(req.body,'secret');
 							res.json({token: token});
+							res.send();
 						}
 					})
 				}
