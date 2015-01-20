@@ -13,7 +13,7 @@ angular.module('waitly.signin',[])
 				.catch(function(error){
 					$scope.loginName = '';
 					$scope.loginPassword = '';
-					$window.localStorage.setItem('com.waitly',undefined);
+					$window.localStorage.removeItem('com.waitly');
 					$location.path('/signin');
 				})
 		} else {
@@ -26,7 +26,8 @@ angular.module('waitly.signin',[])
 				.catch(function(error){
 					$scope.loginName = '';
 					$scope.loginPassword = '';
-					$window.localStorage.setItem('com.waitly.owner',undefined);
+					$window.localStorage.removeItem('com.waitly.owner');
+					$window.localStorage.removeItem('com.waitly.ownername');
 					$location.path('/signin');
 				})
 		}

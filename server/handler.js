@@ -92,28 +92,30 @@ module.exports = function(app) {
 	});
 
 	app.post('/api/users/signup',function(req,res, next){
-		var newUser = new User(req.body);
-		console.log(newUser);
-		User.findOne(req.body,function(err,user){
-			console.log(err,user);
+		User.findOne({username:req.body.username},function(err,user){
+			if(err){
+				res.error(err);
+			} else {
+				console.log(user);
+				if(!user){
+					bcrypt.genSalt(10,function(err,salt){
+						bcrypt.hash(req.body.password, salt, function(err,hash){
+							var username = req.body.username;
+							var password = hash;
+							var newUser = new User({
+								username: username,
+								password: password
+							});
+
+							newUser.save();
+							res.send('/');
+						})
+					})
+				} else {
+					next(new Error('User Exist'));
+				}
+			}
 		})
-
-
-
-		// userdb.forEach(function(extuser){
-		// 	if(extuser.username === user.username){
-		// 		next(new Error('User Already Exist!'));
-		// 		res.header(500);
-		// 		error = true;
-		// 		res.send('/');
-		// 	}
-		// })
-		// if(!error){
-		// 	userdb.push(user)
-		// 	var token = jwt.encode(user,'secret');
-		// 	res.json({token: token});
-		// 	res.send(300);
-		// }
 	});
 
 
@@ -121,22 +123,24 @@ module.exports = function(app) {
 		var username = req.body.username;
 		var password = req.body.password;
 
-		var error = true;
-		userdb.forEach(function(user){
-			if(user.username === username){
-				if(user.password === password){
-					var token = jwt.encode(user,'secret');
-					res.json({token: token});
-					res.send('/');
-					error = false;
+		User.findOne({username:username},function(err,user){
+			if(err){
+				next(new Error(err));
+			} else {
+				if(!user){
+					next(new Error('No User Exist!'));
+				} else {
+					bcrypt.compare(password,user.password, function(err,match){
+						if(!match){
+							res.send('/');
+						} else {
+							var token = jwt.encode(req.body,'secret');
+							res.json({token: token});
+						}
+					})
 				}
 			}
 		})
-
-		if(error){
-			res.error();
-			res.send(500);
-		}
 
 	})
 
