@@ -1,11 +1,1 @@
 node_modules/
-client/bower_components/jquery/dist/*
-!client/bower_components/jquery/dist/jquery.min.js
-client/bower_components/angular/*
-!client/bower_components/angular/angular.min.js
-client/bower_components/angular-ui-router/release/*
-!client/bower_components/angular-ui-router/release/angular-ui-router.min.js
-client/bower_components/angular-route/*
-!client/bower_components/angular-route/angular-route.min.js
-client/bower_components/underscore/*
-!client/bower_components/underscore/underscore-min.js
