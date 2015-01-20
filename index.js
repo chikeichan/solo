@@ -1,4 +1,4 @@
 var app = require('./server/server.js');
-
-app.listen(8080);
-console.log('Listening on Port 8080....')
+var port = process.env.port || 8080;
+app.listen(port);
+console.log('Listening on Port '+port)
