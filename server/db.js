@@ -7,21 +7,19 @@ var Schema = mongoose.Schema;
 
 
 UserSchema = new Schema({
-	userID: Schema.ObjectId,
-	username: String,
+	username: {type: String, lowercase: true, unique: true},
 	password: String
 });
 
 WaitlistSchema = new Schema({
-	waitlistID: Schema.ObjectId,
-	restaurantID: Number,
-	userID: Number,
+	restaurant: String,
+	User: String,
 	partySize: Number,
-	time: {type: Date, default: Date.now}
+	time: {type: Date, default: Date.now},
+	status: String
 });
 
 RestaurantSchema = new Schema({
-	restaurantID: Schema.ObjectId,
 	name: String,
 	type: String,
 	password: String,

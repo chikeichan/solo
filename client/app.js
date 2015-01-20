@@ -138,7 +138,7 @@ angular.module('waitly',[
 
 	$rootScope.$on('$routeChangeStart',function(evt,next,current){
 		if(next.authenticate && next.owner){
-			if($window.localStorage['com.waitly.owner']==='undefined' || !$window.localStorage['com.waitly.owner']){
+			if(!$window.localStorage['com.waitly.owner']){
 				return $location.path('/signin');
 			}
 		}

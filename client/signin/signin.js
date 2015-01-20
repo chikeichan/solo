@@ -21,7 +21,7 @@ angular.module('waitly.signin',[])
 				.then(function(token){
 					$window.localStorage.setItem('com.waitly.owner',token);
 					$window.localStorage.setItem('com.waitly.ownername',name);
-					$location.path('/ownerpage/');
+					$location.path('/ownerpage');
 				})
 				.catch(function(error){
 					$scope.loginName = '';

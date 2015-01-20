@@ -21,8 +21,7 @@ angular.module('waitly.owner',[])
 			Auth.ownerSignup({
 				name: name,
 				type: type,
-				pw: pw,
-				averageWaitTime: 30
+				password: pw
 			}).then(function(token){
 					$window.localStorage.setItem('com.waitly.owner',token);
 					$window.localStorage.setItem('com.waitly.ownername',name);

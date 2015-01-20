@@ -38,43 +38,12 @@ waitlistdb = [
 		},
 	];
 
-var restaurantdb = [{
-			id: 1,
-			name: 'Spruce Cafe',
-			pw: '1234',
-			type: 'Fine Dining',
-			averageWaitTime: 90
-		},
-		{
-			id:2,
-			name: 'Cafe Des Amis',
-			type: 'Casual Dining',
-			pw: '1234',
-			averageWaitTime: 15
-		},
-		{
-			id:3,
-			name: 'Anchor Oyster Bar',
-			type: 'Casual Dining',
-			pw: '1234',
-			averageWaitTime: 75
-		},
-		{
-			id:4,
-			name: 'Gary Danko',
-			type: 'Fine Dining',
-			pw: '1234',
-			averageWaitTime: 120
-		}];
-
-
-
-
 module.exports = function(app) {
 	app.use(express.static(__dirname+'/../client/'));
 	app.get('/api/restaurants',function(req,res,next){
-		res.send(restaurantdb);
-		res.header(200);
+		Restaurant.find({},function(err,d){
+			res.send(d);
+		})
 	})
 
 	app.get('/api/waitlists',function(req,res,next){
@@ -145,46 +114,56 @@ module.exports = function(app) {
 	})
 
 	app.post('/api/restaurants/signup',function(req,res, next){
-		var restaurant = req.body;
-		restaurant.id = restaurantdb.length;
-		var error = false;
-		restaurantdb.forEach(function(extrestaurant){
-			if(extrestaurant.name === restaurant.name){
-				next(new Error('Restaurant Already Exist!'));
-				error = true;
-				res.send('/');
-			}
-		})
-		if(!error){
-			restaurantdb.push(restaurant)
-			console.log(restaurant);
-			var token = jwt.encode(restaurant,'secret');
-			res.json({token: token});
-			res.send('/');
-		}
-	});
+		Restaurant.findOne({name:req.body.name},function(err,restaurant){
+			if(err){
+				res.error(err);
+			} else {
+				console.log(restaurant);
+				if(!restaurant){
+					bcrypt.genSalt(10,function(err,salt){
+						bcrypt.hash(req.body.password, salt, function(err,hash){
+							var name = req.body.name;
+							var password = hash;
+							var newRest = new Restaurant({
+								name: name,
+								password: password,
+								type: req.body.type,
+								averageWaitTime: 30
+							});
 
-	app.post('/api/restaurants/signin',function(req,res,next){
-		var restaurant = req.body.name;
-		var password = req.body.password;
-		console.log(restaurant,password);
-
-		var error = true;
-		restaurantdb.forEach(function(exrestaurant){
-			if(exrestaurant.name === restaurant){
-				console.log(exrestaurant);
-				if(exrestaurant.pw === password){
-					var token = jwt.encode(restaurant,'secret');
-					res.json({token: token});
-					error = false;
-					res.send('/');
+							newRest.save();
+							res.send('/');
+						})
+					})
+				} else {
+					next(new Error('Restaurant Exist'));
 				}
 			}
 		})
-		if(error){
-			res.error();
-			res.send();
-		}
+	});
+
+	app.post('/api/restaurants/signin',function(req,res,next){
+		var name = req.body.name;
+		var password = req.body.password;
+
+		Restaurant.findOne({name:name},function(err,restaurant){
+			if(err){
+				next(new Error(err));
+			} else {
+				if(!restaurant){
+					next(new Error('No Restaurant Exist!'));
+				} else {
+					bcrypt.compare(password,restaurant.password, function(err,match){
+						if(!match){
+							res.send('/');
+						} else {
+							var token = jwt.encode(req.body,'secret');
+							res.json({token: token});
+						}
+					})
+				}
+			}
+		})
 	})
 
 }
