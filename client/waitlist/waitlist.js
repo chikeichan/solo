@@ -6,7 +6,6 @@ angular.module('waitly.waitlist',[])
 	if($routeParams.id){
 		Restaurant.data.forEach(function(d){
 			if(d.id == $routeParams.id){
-				console.log(typeof d.name);
 				$scope.filterName = d.name;
 			}
 		})

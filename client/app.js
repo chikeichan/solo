@@ -6,15 +6,25 @@ angular.module('waitly',[
 	'waitly.signup',
 	'ngRoute'
 ])
-.config(function($routeProvider){
+.config(function($routeProvider,$httpProvider){
 	$routeProvider
 	.when('/signup',{
 		template: "<sign-up></sign-up>",
 		controller: "SignupController"
 	})
+	.when('/index', {
+		template: "<filter-bar></filter-bar>",
+		controller: "FilterController",
+		authenticate: true
+	})
+	.when('/signin', {
+		template: "<sign-in></sign-in>",
+		controller: "SigninController"
+	})
 	.when('/:id', {
 		template: "<wait-list></wait-list><filter-bar></filter-bar>",
-		controller: "WaitlistController"
+		controller: "WaitlistController",
+		authenticate: true
 	})
 	.otherwise({
 		template: '<sign-in></sign-in>',
@@ -99,7 +109,29 @@ angular.module('waitly',[
 		})
 	}
 
-	return {
-		signup: signup
+	var signin = function (user) {
+		return $http({
+			method: 'POST',
+			url: '/api/users/signin',
+			data: user
+		})
+		.then(function(resp){
+			return resp.data.token;
+		})
 	}
+
+	return {
+		signup: signup,
+		signin: signin
+	}
+})
+
+.run(function($rootScope, $location, $window,Auth) {
+	$rootScope.$on('$routeChangeStart',function(evt,next,current){
+		if(next.authenticate){
+			if($window.localStorage['com.waitly']==='undefined'){
+				return $location.path('/signin');
+			}
+		}
+	})
 })

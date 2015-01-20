@@ -4,7 +4,6 @@ angular.module('waitly.signup',[])
 	angular.extend($scope,Auth);
 
 	$scope.create = function(name, pw){
-		console.log(name,pw)
 		Auth.signup({username: name, password: pw})
 			.then(function(token){
 				$window.localStorage.setItem('com.waitly',token);
