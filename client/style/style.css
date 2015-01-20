@@ -98,8 +98,9 @@ input#search:focus {
 
 .filter {
 	display: inline-block;
-	text-align: left;
+	text-align: center;
 	width: 50%;
+
 }
 
 div#restaurants {
@@ -110,6 +111,7 @@ div#restaurants {
   padding: 10px;
   width: 90%;
   min-width: 250px;
+  text-align: left;
 }
 
 span#average-wait {
@@ -135,4 +137,12 @@ span#average-wait {
 	width: 20px;
 	position: relative;
 	top: 4px;
+}
+
+#timer {
+	color: red;
+	font-size: 15px;
+	float: right;
+	position: relative;
+	top: -5px;
 }

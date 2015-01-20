@@ -10,24 +10,28 @@ var userdb = [{
 
 waitlistdb = [
 		{
+			waitlistID: 1,
 			restaurantName: 'Spruce Cafe',
 			name: 'Tony',
 			size: 2,
 			time: new Date()
 		},
 		{
+			waitlistID: 2,
 			restaurantName: 'Cafe Des Amis',
 			name: 'Marcus',
 			size: 5,
 			time: new Date()
 		},
 		{
+			waitlistID: 3,
 			restaurantName: 'Anchor Oyster Bar',
 			name: 'Fred',
 			size: 4,
 			time: new Date()
 		},
 		{
+			waitlistID: 4,
 			restaurantName: 'Gary Danko',
 			name: 'Shawn',
 			size: 7,
@@ -81,6 +85,7 @@ module.exports = function(app) {
 
 	app.post('/api/waitlists',function(req,res, next){
 		var waitlist = req.body;
+		waitlist.waitlistID = waitlistdb.length;
 		var error = false;
 		waitlistdb.push(waitlist);
 		res.header(300);

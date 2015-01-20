@@ -53,7 +53,6 @@ angular.module('waitly',[
 	waitlist.getParties = function(){
 	$http.get('/api/waitlists')
 		.success(function(data){
-			console.log(data);
 			waitlist.parties = data;
 		})
 	}
@@ -70,7 +69,6 @@ angular.module('waitly',[
 	restaurant.getData = function(){
 		$http.get('/api/restaurants')
 			.success(function(data){
-				console.log(data);
 				restaurant.data = data;
 			})
 	};

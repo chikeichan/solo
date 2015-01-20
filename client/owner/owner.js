@@ -35,6 +35,22 @@ angular.module('waitly.owner',[])
 		}
 	}
 
+	$scope.startTimer = function(check){
+		if(check.party.timer === 'Sent Notification'){
+			$scope.parties.forEach(function(party,i){
+				if(check.party.waitlistID === party.waitlistID){
+					$scope.parties.splice(i,1);
+				}
+			})
+		}
+		$scope.parties.forEach(function(party){
+			if(check.party.waitlistID === party.waitlistID){
+				party.timer = 'Sent Notification';
+			}
+		})
+		
+	}
+
 
 
 })
@@ -55,8 +71,14 @@ angular.module('waitly.owner',[])
 		retrict: 'EA',
 		scope: "=",
 		templateUrl: './owner/ownerpage.html',
-		link: function(){
-			
+		link: function(scope, el, attr){
+			$(el)
+			.on('mouseenter','#party',function(){
+				$(this).addClass('click')
+			})
+			.on('mouseleave','#party',function(){
+				$(this).removeClass('click')
+			})
 		}
 	}
 })
