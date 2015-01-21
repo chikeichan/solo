@@ -7,6 +7,7 @@ angular.module('waitly.header',[])
     $window.localStorage.removeItem('com.waitly');
     $location.path('/signin');
   }
+
 })
 
 .directive('headerBar', function(){
@@ -14,8 +15,12 @@ angular.module('waitly.header',[])
 		retrict: 'EA',
 		scope: false,
 		templateUrl: './header/header.html',
-		link: function(){
+		link: function(scope,el,attr){
+      $(el).on('keydown','input',function(e){
+        if(e.keyCode === 13){
 
+        }
+      })
 		}
 	}
 })

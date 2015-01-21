@@ -59,6 +59,19 @@ angular.module('waitly',[
 	}
 	waitlist.getParties();
 
+	waitlist.getWaiting = function(cb){
+		var waiting = {};
+		this.parties.forEach(function(d){
+			if(!waiting[d.restaurant]){
+				waiting[d.restaurant] = 0;
+			}
+			if(d.status !== 'Seated'){
+				waiting[d.restaurant]++;
+			}
+		})
+		cb(waiting);
+	}
+
 	return waitlist;
 })
 

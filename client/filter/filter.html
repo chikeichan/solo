@@ -1,7 +1,7 @@
 <div class='filter' ng-controller='FilterController'>
-	<div id='restaurants' ng-repeat="restaurant in data" ng-click="goFilter(restaurant._id)">
+	<div id='restaurants' ng-repeat="restaurant in data | filter: search" ng-click="goFilter(restaurant._id)">
 			<span id='name'><b>{{restaurant.name}}</b></span> <br>
 			<span id='type'>{{restaurant.type}}</span> <br>
-			<span id='average-wait'>{{restaurant.averageWaitTime + ' minutes'}}</span>
+			<span id='average-wait'>{{restaurant.numOfWaits + ' people ahead'}}</span>
 	</div>
 </div>
