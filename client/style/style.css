@@ -19,7 +19,7 @@ header-bar > div {
 	height: 165px;
 }
 div.content {
-	width: 70%;
+	width: 50%;
 	margin: 0 auto 0 auto;
 }
 
@@ -43,8 +43,6 @@ input#search:focus {
 
 .waitlist {
 	display: inline-block;
-	width: 50%;
-	float: right;
 }
 
 #party, #createParty {
@@ -99,8 +97,6 @@ input#search:focus {
 .filter {
 	display: inline-block;
 	text-align: center;
-	width: 50%;
-
 }
 
 div#restaurants {
