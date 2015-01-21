@@ -41,7 +41,7 @@ angular.module('waitly.owner',[])
 			newStatus = '9 minutes';
 		}
 
-		if(check.party.status === '15 minutes'){
+		if(check.party.status === '9 minutes'){
 			newStatus = '5 minutes';
 		}
 

@@ -18,6 +18,12 @@ angular.module('waitly',[
 		controller: "FilterController",
 		authenticate: true
 	})
+	.when('/ownerpage', {
+		template: "<owner-page></owner-page>",
+		controller: "OwnerController",
+		// authenticate: true,
+		owner: true
+	})
 	.when('/signin', {
 		template: "<sign-in></sign-in>",
 		controller: "SigninController"
@@ -25,12 +31,6 @@ angular.module('waitly',[
 	.when('/owner', {
 		template: "<owner-signup></owner-signup>",
 		controller: "OwnerController"
-	})
-	.when('/ownerpage', {
-		template: "<owner-page></owner-page>",
-		controller: "OwnerController",
-		authenticate: true,
-		owner: true
 	})
 	.when('/refresh', {
 		redirectTo: "/ownerpage"
@@ -41,8 +41,7 @@ angular.module('waitly',[
 		authenticate: true
 	})
 	.otherwise({
-		template: '<sign-in></sign-in>',
-		controller: "SigninController"
+		redirectTo: '/signin'
 	})
 })
 
@@ -135,8 +134,9 @@ angular.module('waitly',[
 
 .run(function($rootScope, $location, $window,Auth) {
 	$rootScope.$on('$routeChangeStart',function(evt,next,current){
-		if(next.authenticate && next.owner){
+		if(next.owner){
 			if(!$window.localStorage['com.waitly.owner']){
+				console.log('hi')
 				return $location.path('/signin');
 			}
 		}
