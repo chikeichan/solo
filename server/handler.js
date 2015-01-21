@@ -97,12 +97,12 @@ module.exports = function(app) {
 	app.post('/api/restaurants/signup',function(req,res, next){
 		Restaurant.findOne({name:req.body.name},function(err,restaurant){
 			if(err){
-				res.error(err);
+				res.send(err);
 			} else {
 				console.log(restaurant);
 				if(!restaurant){
 					bcrypt.genSalt(10,function(err,salt){
-						bcrypt.hash(req.body.password, salt, function(err,hash){
+						bcrypt.hash(req.body.password, salt, null, function(err,hash){
 							var name = req.body.name;
 							var password = hash;
 							var newRest = new Restaurant({
